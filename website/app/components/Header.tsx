@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
+  { label: "About", href: "/about" },
 ];
 
-const CTA = { label: "Contact us", href: "#contact" };
+const CTA = { label: "Get in Touch", href: "#contact" };
 
 function CtaButton({ onClick }: { onClick?: () => void }) {
   return (
@@ -63,18 +64,7 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
           className="justify-self-end rounded-full p-2 md:hidden"
         >
-          <span className="flex h-3.5 w-6 flex-col justify-between" aria-hidden>
-            <span
-              className={`h-0.5 w-full bg-current transition-transform ${
-                open ? "translate-y-[6px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-full bg-current transition-transform ${
-                open ? "-translate-y-[6px] -rotate-45" : ""
-              }`}
-            />
-          </span>
+          {open ? <X aria-hidden className="size-6" /> : <Menu aria-hidden className="size-6" />}
         </button>
       </div>
 
