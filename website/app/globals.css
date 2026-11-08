@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
+/*
+  Vici palette, 60 / 30 / 10 rule
+
+  60%  Stone Linen       page backgrounds, large surfaces
+  30%  Gallery Blue      text, navbar/footer, feature sections
+  10%  Burnt Terracotta  accents only: CTAs, links on hover, highlights
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --stone-linen: #d9d1ca;
+  --gallery-blue: #0b369a;
+  --burnt-terracotta: #c34811;
+
+  --background: var(--stone-linen);
+  --foreground: var(--gallery-blue);
+  --surface: var(--gallery-blue);
+  --on-surface: var(--stone-linen);
+  --accent: var(--burnt-terracotta);
+  --on-accent: #ffffff;
 }
 
 @theme inline {
+  /* Raw brand colors: bg-stone-linen, text-gallery-blue, border-burnt-terracotta */
+  --color-stone-linen: var(--stone-linen);
+  --color-gallery-blue: var(--gallery-blue);
+  --color-burnt-terracotta: var(--burnt-terracotta);
+
+  /* Semantic roles: bg-background, text-foreground, bg-surface, bg-accent */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on-surface);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-switzer), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
 }
