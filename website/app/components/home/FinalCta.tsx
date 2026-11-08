@@ -14,10 +14,10 @@ export default function FinalCta() {
     <section id="contact" className="scroll-mt-20 bg-surface text-on-surface">
       <Container className="py-20 md:py-28">
         <div className="max-w-3xl">
-          <h2 className="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+          <h2 className="type-h2">
             Tell us where you are. We will help with the next step.
           </h2>
-          <p className="mt-6 text-lg leading-relaxed opacity-85 md:text-xl">
+          <p className="type-lead mt-6 text-paper/85">
             You will work directly with the people building it, not get routed
             through account managers. What best describes you?
           </p>
@@ -28,9 +28,9 @@ export default function FinalCta() {
             <li key={need}>
               <Link
                 href={`/contact?need=${need}`}
-                className="group flex items-center justify-between gap-4 rounded-2xl border border-on-surface/30 p-6 transition-colors hover:border-on-surface hover:bg-on-surface/10"
+                className="group flex items-center justify-between gap-4 rounded-2xl border border-paper/30 p-6 transition-colors hover:border-paper hover:bg-paper/10"
               >
-                <span className="flex items-center gap-4 text-lg font-bold">
+                <span className="type-h3 flex items-center gap-4">
                   <Icon aria-hidden className="size-6 shrink-0" />
                   {label}
                 </span>

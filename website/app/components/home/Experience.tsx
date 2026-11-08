@@ -28,13 +28,9 @@ export default function Experience() {
     <section id="projects" className="scroll-mt-20">
       <Container className="py-20 md:py-28">
         <div className="max-w-3xl">
-          <p className="text-sm font-bold uppercase tracking-wider opacity-70">
-            Our experience
-          </p>
-          <h2 className="mt-4 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-            What the team has built
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed">
+          <p className="type-eyebrow text-ink/70">Our experience</p>
+          <h2 className="type-h2 mt-4">What the team has built</h2>
+          <p className="type-lead mt-6 text-ink/80">
             Hands-on work across software, AI and infrastructure, delivered by
             a Vici founder in a previous engineering role. These are not Vici
             client projects.
@@ -43,13 +39,10 @@ export default function Experience() {
 
         <ul className="mt-14 grid gap-5 md:grid-cols-3">
           {WORK.map(({ icon: Icon, title, summary }) => (
-            <li
-              key={title}
-              className="rounded-2xl border border-deep-blue/20 p-8"
-            >
+            <li key={title} className="rounded-2xl border border-ink/20 p-8">
               <Icon aria-hidden className="size-8" />
-              <h3 className="mt-6 text-xl font-bold">{title}</h3>
-              <p className="mt-3 leading-relaxed opacity-80">{summary}</p>
+              <h3 className="type-h3 mt-6">{title}</h3>
+              <p className="type-body mt-3 text-ink/75">{summary}</p>
             </li>
           ))}
         </ul>

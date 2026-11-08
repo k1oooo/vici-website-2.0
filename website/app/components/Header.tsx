@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Button from "./Button";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
@@ -11,21 +12,15 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
 ];
 
-const CTA = { label: "Get in Touch", href: "#contact" };
-
 function CtaButton({ onClick }: { onClick?: () => void }) {
   return (
-    <Link
-      href={CTA.href}
-      onClick={onClick}
-      className="group inline-flex items-center gap-2.5 rounded-full bg-off-white px-5 py-2.5 text-[15px] font-bold text-deep-blue transition-colors hover:bg-accent"
-    >
-      {CTA.label}
+    <Button href="#contact" onClick={onClick} variant="primary" tone="on-dark">
+      Get in Touch
       <span
         aria-hidden
-        className="size-2 bg-burnt-orange transition-colors group-hover:bg-deep-blue"
+        className="size-2 bg-burnt-orange transition-colors group-hover:bg-ink"
       />
-    </Link>
+    </Button>
   );
 }
 
@@ -45,7 +40,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-[15px] font-bold transition-colors hover:text-accent"
+              className="type-label underline-offset-8 hover:underline"
             >
               {link.label}
             </Link>
@@ -69,14 +64,14 @@ export default function Header() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-on-surface/15 px-6 pb-8 pt-4 md:hidden">
+        <div id="mobile-menu" className="border-t border-paper/20 px-6 pb-8 pt-4 md:hidden">
           <nav aria-label="Mobile" className="flex flex-col">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={close}
-                className="border-b border-on-surface/15 py-4 text-xl font-bold"
+                className="type-h3 border-b border-paper/20 py-4"
               >
                 {link.label}
               </Link>

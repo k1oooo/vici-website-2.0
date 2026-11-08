@@ -1,32 +1,43 @@
 @import "tailwindcss";
 
 /*
-  Vici palette, 60 / 30 / 10 rule
+  Vici design tokens
 
-  60%  Off White     page backgrounds, large surfaces
-  30%  Deep Blue     text, header/footer, feature sections
-  10%  Burnt Orange  accents only: small highlights, hover states
+  Surfaces (60 / 30 / 10)
+    60%  Off White     page backgrounds
+    30%  Deep Blue     header, hero, footer, icon tiles
+    10%  Burnt Orange  accents only: small shapes, hover fills
+
+  Text is only ever black (ink) or white (paper):
+    ink    on light surfaces
+    paper  on Deep Blue
+  Secondary text uses opacity, e.g. text-ink/70 and text-paper/80.
 */
 :root {
   --off-white: #f5f5f0;
   --deep-blue: #1e40af;
   --burnt-orange: #f97316;
 
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+
   --background: var(--off-white);
-  --foreground: var(--deep-blue);
+  --foreground: var(--ink);
   --surface: var(--deep-blue);
-  --on-surface: var(--off-white);
+  --on-surface: var(--paper);
   --accent: var(--burnt-orange);
-  --on-accent: var(--deep-blue);
+  --on-accent: var(--ink);
 }
 
 @theme inline {
-  /* Raw brand colors: bg-off-white, text-deep-blue, bg-burnt-orange */
+  /* Raw brand colors */
   --color-off-white: var(--off-white);
   --color-deep-blue: var(--deep-blue);
   --color-burnt-orange: var(--burnt-orange);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
 
-  /* Semantic roles: bg-background, text-foreground, bg-surface, bg-accent */
+  /* Semantic roles */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
@@ -37,13 +48,111 @@
   --font-sans: var(--font-switzer), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ------------------------------------------------------------------
+   Typography scale
+   Switzer ships in Regular (400) and Bold (700), so hierarchy comes
+   from size, weight and tracking. Headings get tighter tracking and
+   line-height as they grow; body text stays at 16px+ with generous
+   leading and a readable line length.
+------------------------------------------------------------------- */
+
+/* Hero headline */
+@utility type-display {
+  font-size: clamp(2.75rem, 1.5rem + 5vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* Section headings */
+@utility type-h2 {
+  font-size: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* Card and step titles */
+@utility type-h3 {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* Intro paragraphs under headings */
+@utility type-lead {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* Default paragraph */
+@utility type-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+/* Captions, legal lines */
+@utility type-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Small uppercase section labels */
+@utility type-eyebrow {
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Nav links, short UI labels */
+@utility type-label {
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
 }
 
 ::selection {
   background: var(--accent);
   color: var(--on-accent);
+}
+
+/* Visible keyboard focus that follows the current text colour,
+   so it has contrast on both light and blue surfaces. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
